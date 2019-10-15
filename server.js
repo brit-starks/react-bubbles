@@ -9,7 +9,7 @@ const token =
 app.use(bodyParser.json());
 app.use(CORS());
 
-let colors = [
+export let colors = [
   {
     color: "aliceblue",
     code: {
@@ -112,7 +112,7 @@ app.post("/api/login", (req, res) => {
   } else {
     res
       .status(403)
-      .json({ error: "Username or Password incorrect. Please see Readme" });
+      .json({ error: "Username or Password incorrect. Please see Readme..." });
   }
 });
 

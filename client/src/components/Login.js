@@ -4,12 +4,15 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 class Login extends React.Component {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
-  state = {
-    credentials: {
-      username: '',
-      password: ''
+  constructor(props){
+    super(props);
+      this.state = {
+        credentials: {
+          username: '',
+          password: ''
+        }
+      };
     }
-  };
 
   handleSubmit = e => {
     e.preventDefault();
@@ -17,9 +20,9 @@ class Login extends React.Component {
     axiosWithAuth()
     .post('/login', this.state.credentials)
     .then(res => {
-      // console.log(res);
+      console.log(res);
       localStorage.setItem('token', res.data.payload);
-      // this.props.history.push('/bubbles')
+      this.props.history.push('/bubbles')
     })
     .catch(err => console.log(err))
   };
@@ -36,7 +39,7 @@ class Login extends React.Component {
       <div className='login-form'>
         <h1>Welcome to the Bubble App!</h1>
         <p>Build a login page here</p>
-        
+
         <form onSubmit={this.handleSubmit}>
           <input 
             type='text'
